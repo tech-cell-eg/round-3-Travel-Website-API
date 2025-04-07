@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('tour_amenities', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('tour_id')->constrained()->onDelete('cascade');
+            $table->foreignId('amenity_id')->constrained()->onDelete('cascade');
+            $table->boolean('is_included')->default(true);
             $table->timestamps();
         });
     }

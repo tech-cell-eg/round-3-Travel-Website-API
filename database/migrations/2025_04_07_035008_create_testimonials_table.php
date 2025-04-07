@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('testimonials', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('rate');
+            $table->string('rate')->comment('from 0 to 5');
             $table->text('comment');
             $table->timestamps();
         });

@@ -13,6 +13,17 @@ return new class extends Migration
     {
         Schema::create('tour_reviews', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('tour_id')->constrained()->onDelete('cascade');
+            $table->string('name');
+            $table->string('email');
+            $table->string('title');
+            $table->text('comment');
+            $table->unsignedTinyInteger('location_rate')->default(0)->comment('from 0 to 5'); 
+            $table->unsignedTinyInteger('amenities_rate')->default(0)->comment('from 0 to 5'); 
+            $table->unsignedTinyInteger('price_rate')->default(0)->comment('from 0 to 5'); 
+            $table->unsignedTinyInteger('room_rate')->default(0)->comment('from 0 to 5'); 
+            $table->unsignedTinyInteger('food_rate')->default(0)->comment('from 0 to 5'); 
+            $table->unsignedTinyInteger('tour_operator')->default(0)->comment('from 0 to 5'); 
             $table->timestamps();
         });
     }

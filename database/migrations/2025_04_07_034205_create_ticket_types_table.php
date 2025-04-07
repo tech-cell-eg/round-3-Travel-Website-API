@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('ticket_types', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->unique()->comment('"Adult", "Youth", "Children"');
+            $table->integer('age_min');
+            $table->integer('age_max');
             $table->timestamps();
         });
     }

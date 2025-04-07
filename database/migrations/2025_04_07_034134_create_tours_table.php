@@ -13,6 +13,17 @@ return new class extends Migration
     {
         Schema::create('tours', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->foreignId('tour_category_id')->constrained()->onDelete('cascade');
+            $table->foreignId('destination_id')->constrained()->onDelete('cascade');
+            $table->integer('group_size');
+            $table->string('ages');
+            $table->string('languages');
+            $table->text('description');
+            $table->json('highlights');
+            $table->boolean('bestseller')->default(false);
+            $table->boolean('free_cancellation')->default(false);
+            $table->string('map')->nullable();
             $table->timestamps();
         });
     }

@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('extra_tours', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('extra_id')->constrained()->onDelete('cascade');
+            $table->foreignId('tour_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
