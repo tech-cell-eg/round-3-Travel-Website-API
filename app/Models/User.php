@@ -13,17 +13,6 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
-
-    /**
      * The attributes that should be hidden for serialization.
      *
      * @var list<string>
@@ -44,5 +33,12 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function getImageAttribute(): string
+    {
+        return str_starts_with($this->attributes['image'], 'http')
+            ? $this->attributes['image']
+            : asset($this->attributes['image']);
     }
 }

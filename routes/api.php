@@ -1,9 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Website\TourController;
+use App\Http\Controllers\Website\ArticleController;
+use App\Http\Controllers\Website\FeatureController;
+use App\Http\Controllers\Website\DestinationController;
+use App\Http\Controllers\Website\TestimonialController;
+use App\Http\Controllers\Website\TourCategoryController;
 
-Route::get('/', function () {
-    return response()->json([
-        'message' => 'Welcome to the API',
-    ]);
-});
+
+
+Route::apiResource('articles', ArticleController::class)->only(['index']);
+Route::apiResource('testimonials', TestimonialController::class)->only(['index']);
+Route::apiResource('tours', TourController::class)->only(['index', 'show']);
+Route::apiResource('tour-categories', TourCategoryController::class)->only(['index', 'show']);
+Route::apiResource('destinations', DestinationController::class)->only(['index', 'show']);
+Route::apiResource('features', FeatureController::class)->only(['index']);

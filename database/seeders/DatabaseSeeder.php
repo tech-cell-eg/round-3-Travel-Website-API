@@ -7,12 +7,16 @@ use App\Models\Tour;
 use App\Models\User;
 use App\Models\Extra;
 use App\Models\Amenity;
+use App\Models\Article;
+use App\Models\Feature;
 use App\Models\TicketType;
 use App\Models\Destination;
 use App\Models\Testimonial;
 use App\Models\TourCategory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Database\Seeders\FeatureSeeder;
+use Database\Seeders\TicketTypeSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -34,6 +38,8 @@ class DatabaseSeeder extends Seeder
         Extra::truncate();
         Faq::truncate();
         Testimonial::truncate();
+        Article::truncate(); 
+        Feature::truncate();
 
         // Truncate related tables created by TourFactory
         DB::table('tour_images')->truncate();
@@ -56,5 +62,8 @@ class DatabaseSeeder extends Seeder
         Extra::factory(10)->create();
         Faq::factory(100)->create();
         Testimonial::factory(100)->create();
+        Article::factory(50)->create();
+        $this->call(FeatureSeeder::class);
+
     }
 }

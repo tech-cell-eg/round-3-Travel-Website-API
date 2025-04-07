@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('tours', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('slug')->unique();
             $table->foreignId('tour_category_id')->constrained()->onDelete('cascade');
             $table->foreignId('destination_id')->constrained()->onDelete('cascade');
             $table->integer('group_size');

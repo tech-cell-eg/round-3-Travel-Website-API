@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Tour extends Model
 {
-    use HasFactory;
+    use HasFactory, Sluggable;
     
     protected $casts = [
         'highlights' => 'array',
@@ -51,5 +52,37 @@ class Tour extends Model
     public function extras()
     {
         return $this->belongsToMany(Extra::class, 'extra_tour');
+    }
+
+    public function getBestsellerAttribute($value)
+    {
+        return $value ? 'Yes' : 'No';
+    }
+
+    public function getFreeCancellationAttribute($value)
+    {
+        return $value ? 'Yes' : 'No';
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title',
+                'onUpdate' => true,  
+            ]
+        ];
+    }
+
+    public function getImageAttribute(): string
+    {
+        return str_starts_with($this->attributes['image'], 'http')
+            ? $this->attributes['image']
+            : asset($this->attributes['image']);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 }

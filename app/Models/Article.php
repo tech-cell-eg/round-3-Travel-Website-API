@@ -4,23 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Cviebrock\EloquentSluggable\Sluggable;
 
-class TourReview extends Model
+class Article extends Model
 {
-    use HasFactory;
-    
-    public function tour()
-    {
-        return $this->belongsTo(Tour::class);
-    }
+    use HasFactory, Sluggable;
 
     public function user() {
         return $this->belongsTo(User::class);
     }
 
-    public function images()
+    public function sluggable(): array
     {
-        return $this->hasMany(ReviewImage::class);
+        return [
+            'slug' => [
+                'source' => 'title',
+                'onUpdate' => true,  
+            ]
+        ];
     }
 
     public function getImageAttribute(): string
@@ -29,4 +30,11 @@ class TourReview extends Model
             ? $this->attributes['image']
             : asset($this->attributes['image']);
     }
+
+    
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
 }

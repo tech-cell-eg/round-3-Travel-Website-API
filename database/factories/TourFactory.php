@@ -27,9 +27,9 @@ class TourFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->sentence(3), // e.g., "Explore the Wild Safari"
-            'tour_category_id' => TourCategory::factory(), // Links to a TourCategory
-            'destination_id' => Destination::factory(), // Links to a Destination
+            'title' => $this->faker->sentence(3), 
+            'tour_category_id' => TourCategory::all()->random()->id, 
+            'destination_id' => Destination::all()->random()->id, 
             'group_size' => $this->faker->numberBetween(5, 50),
             'ages' => $this->faker->randomElement(['All Ages', '18+', '12-65', '5+']),
             'languages' => $this->faker->randomElement(['English', 'Spanish, English', 'French, English', 'Multilingual']),
