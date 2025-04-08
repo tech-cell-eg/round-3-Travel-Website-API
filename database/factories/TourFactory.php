@@ -29,17 +29,18 @@ class TourFactory extends Factory
         return [
             'title' => $this->faker->sentence(3), 
             'type' => $this->faker->randomElement(['trending', 'popular']),
+            'initial_price' => $this->faker->numberBetween(100, 1000),
             'tour_category_id' => TourCategory::all()->random()->id, 
             'destination_id' => Destination::all()->random()->id, 
             'group_size' => $this->faker->numberBetween(5, 50),
             'ages' => $this->faker->randomElement(['All Ages', '18+', '12-65', '5+']),
             'languages' => $this->faker->randomElement(['English', 'Spanish, English', 'French, English', 'Multilingual']),
             'description' => $this->faker->paragraph(3),
-            'highlights' => json_encode([
+            'highlights' => [
                 $this->faker->sentence(),
                 $this->faker->sentence(),
                 $this->faker->sentence(),
-            ]),
+            ],
             'bestseller' => $this->faker->boolean(20),
             'free_cancellation' => $this->faker->boolean(70),
             'map' => $this->faker->url(),

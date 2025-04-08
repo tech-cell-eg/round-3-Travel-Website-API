@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->enum('type', ['trending', 'popular']);
             $table->integer('duration')->nullable();
+            $table->integer('initial_price')->nullable()->comment('Initial price of the tour is equal to adult price in ticket prices table');
             $table->foreignId('tour_category_id')->constrained()->onDelete('cascade');
             $table->foreignId('destination_id')->constrained()->onDelete('cascade');
             $table->integer('group_size')->nullable();
