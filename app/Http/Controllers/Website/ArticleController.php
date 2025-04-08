@@ -13,7 +13,6 @@ class ArticleController extends Controller
 
     public function index() {
         $articles = ArticleResource::collection(Article::with('user')->latest()->paginate(5));
-        
         return $this->successResponse($articles, 'Articles fetched successfully');
     }
 }
