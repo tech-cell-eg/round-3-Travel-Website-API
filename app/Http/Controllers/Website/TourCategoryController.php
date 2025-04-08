@@ -20,7 +20,7 @@ class TourCategoryController extends Controller
 
     public function show(TourCategory $tourCategory)
     {
-        $tourCategory = new TourCategoryResource($tourCategory->load('tours'));
+        $tourCategory = new TourCategoryResource($tourCategory->load('tours')->loadCount('tours'));
         return $this->successResponse($tourCategory, 'Tour category fetched successfully');
     }
 }
