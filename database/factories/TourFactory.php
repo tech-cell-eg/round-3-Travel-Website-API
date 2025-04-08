@@ -43,6 +43,7 @@ class TourFactory extends Factory
             'bestseller' => $this->faker->boolean(20),
             'free_cancellation' => $this->faker->boolean(70),
             'map' => $this->faker->url(),
+            'duration' => $this->faker->numberBetween(1, 10),
             'created_at' => now(),
             'updated_at' => now(),
         ];

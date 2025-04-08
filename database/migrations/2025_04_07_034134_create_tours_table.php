@@ -16,16 +16,17 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->enum('type', ['trending', 'popular']);
+            $table->integer('duration')->nullable();
             $table->foreignId('tour_category_id')->constrained()->onDelete('cascade');
             $table->foreignId('destination_id')->constrained()->onDelete('cascade');
-            $table->integer('group_size');
-            $table->string('ages');
-            $table->string('languages');
-            $table->text('description');
-            $table->json('highlights');
+            $table->integer('group_size')->nullable();
+            $table->string('ages')->nullable();
+            $table->string('languages')->nullable();
+            $table->text('description')->nullable();
+            $table->json('highlights')->nullable();
             $table->boolean('bestseller')->default(false);
             $table->boolean('free_cancellation')->default(false);
-            $table->string('map')->nullable();
+            $table->string('map')->nullable()->nullable();
             $table->timestamps();
         });
     }
