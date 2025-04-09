@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('tours', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('image')->nullable();
             $table->string('slug')->unique();
             $table->enum('type', ['trending', 'popular']);
             $table->integer('duration')->nullable();

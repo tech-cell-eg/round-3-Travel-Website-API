@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('tour_reviews', function (Blueprint $table) {
             $table->id();
             $table->foreignId('tour_id')->constrained()->onDelete('cascade');
-            $table->string('name');
-            $table->string('email');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('title');
             $table->text('comment');
             $table->unsignedTinyInteger('location_rate')->default(0)->comment('from 0 to 5'); 
