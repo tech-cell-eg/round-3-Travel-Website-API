@@ -32,7 +32,8 @@ class Tour extends Model
     public function amenities()
     {
         return $this->belongsToMany(Amenity::class, 'tour_amenities')
-            ->withPivot('is_included');
+            ->withPivot('is_included')
+            ->withTimestamps();
     }
 
     public function itineraries()
@@ -79,7 +80,7 @@ class Tour extends Model
     {
         return str_starts_with($this->attributes['image'], 'http')
             ? $this->attributes['image']
-            : asset($this->attributes['image']);
+            : asset('storage/' . $this->attributes['image']);
     }
 
     public function getRouteKeyName()
