@@ -2,19 +2,22 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\TicketTypeResource\Pages;
-use App\Filament\Resources\TicketTypeResource\RelationManagers;
-use App\Models\TicketType;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
+use App\Models\TicketType;
+use App\Traits\ModelCount;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\TicketTypeResource\Pages;
+use App\Filament\Resources\TicketTypeResource\RelationManagers;
 
 class TicketTypeResource extends Resource
 {
+    use ModelCount;
+    
     protected static ?string $model = TicketType::class;
 
     protected static ?string $navigationIcon = 'heroicon-s-ticket';

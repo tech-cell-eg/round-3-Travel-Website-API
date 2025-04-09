@@ -2,19 +2,22 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\FaqResource\Pages;
-use App\Filament\Resources\FaqResource\RelationManagers;
 use App\Models\Faq;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
+use App\Traits\ModelCount;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\FaqResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\FaqResource\RelationManagers;
 
 class FaqResource extends Resource
 {
+    use ModelCount;
+    
     protected static ?string $model = Faq::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-question-mark-circle';

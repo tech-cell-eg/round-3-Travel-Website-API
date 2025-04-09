@@ -6,21 +6,24 @@ use Filament\Forms;
 use Filament\Tables;
 use App\Models\Feature;
 use Filament\Forms\Form;
+use App\Traits\ModelCount;
 use Filament\Tables\Table;
+use Doctrine\DBAL\Query\Limit;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Textarea;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Guava\FilamentIconPicker\Forms\IconPicker;
 use App\Filament\Resources\FeatureResource\Pages;
 use App\Filament\Resources\FeatureResource\RelationManagers;
-use Doctrine\DBAL\Query\Limit;
-use Filament\Tables\Columns\IconColumn;
 
 
 
 class FeatureResource extends Resource
 {
+    use ModelCount;
+    
     protected static ?string $model = Feature::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-star';

@@ -6,6 +6,7 @@ use Filament\Forms;
 use App\Models\User;
 use Filament\Tables;
 use Filament\Forms\Form;
+use App\Traits\ModelCount;
 use Filament\Tables\Table;
 use App\Models\Testimonial;
 use Filament\Resources\Resource;
@@ -16,6 +17,8 @@ use App\Filament\Resources\TestimonialResource\RelationManagers;
 
 class TestimonialResource extends Resource
 {
+    use ModelCount;
+    
     protected static ?string $model = Testimonial::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-ellipsis';

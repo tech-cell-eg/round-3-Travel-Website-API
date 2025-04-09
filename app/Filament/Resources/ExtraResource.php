@@ -2,19 +2,22 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ExtraResource\Pages;
-use App\Filament\Resources\ExtraResource\RelationManagers;
-use App\Models\Extra;
 use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
 use Filament\Tables;
+use App\Models\Extra;
+use Filament\Forms\Form;
+use App\Traits\ModelCount;
 use Filament\Tables\Table;
+use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filament\Resources\ExtraResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Resources\ExtraResource\RelationManagers;
 
 class ExtraResource extends Resource
 {
+    use ModelCount;
+    
     protected static ?string $model = Extra::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-ellipsis-horizontal';

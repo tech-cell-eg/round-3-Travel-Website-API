@@ -7,6 +7,7 @@ use Filament\Tables;
 use App\Models\Amenity;
 use Filament\Forms\Form;
 use App\Models\Amenities;
+use App\Traits\ModelCount;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Illuminate\Database\Eloquent\Builder;
@@ -16,6 +17,8 @@ use App\Filament\Resources\AmenitiesResource\RelationManagers;
 
 class AmenitiesResource extends Resource
 {
+    use ModelCount;
+    
     protected static ?string $model = Amenity::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-building-office-2';

@@ -6,6 +6,7 @@ use Filament\Forms;
 use App\Models\Tour;
 use Filament\Tables;
 use Filament\Forms\Form;
+use App\Traits\ModelCount;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Repeater;
@@ -22,6 +23,8 @@ use App\Filament\Resources\TourResource\RelationManagers\TicketPricesRelationMan
 
 class TourResource extends Resource
 {
+    use ModelCount;
+    
     protected static ?string $model = Tour::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-map';

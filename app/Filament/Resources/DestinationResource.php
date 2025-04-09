@@ -2,18 +2,21 @@
 
 namespace App\Filament\Resources;
 
+use Filament\Forms;
+use Filament\Tables;
+use Filament\Forms\Form;
+use App\Traits\ModelCount;
+use Filament\Tables\Table;
+use App\Models\Destination;
+use Illuminate\Support\Str;
+use Filament\Resources\Resource;
 use App\Filament\Resources\DestinationResource\Pages;
 use App\Filament\Resources\DestinationResource\RelationManagers;
-use App\Models\Destination;
-use Filament\Forms;
-use Filament\Forms\Form;
-use Filament\Resources\Resource;
-use Filament\Tables;
-use Filament\Tables\Table;
-use Illuminate\Support\Str;
 
 class DestinationResource extends Resource
 {
+    use ModelCount;
+    
     protected static ?string $model = Destination::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-map-pin';
