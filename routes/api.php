@@ -8,6 +8,7 @@ use App\Http\Controllers\Website\ArticleController;
 use App\Http\Controllers\Website\FeatureController;
 use App\Http\Controllers\Website\TourReviewController;
 use App\Http\Controllers\Website\DestinationController;
+use App\Http\Controllers\Website\ReservationController;
 use App\Http\Controllers\Website\TestimonialController;
 use App\Http\Controllers\Website\TourCategoryController;
 
@@ -28,4 +29,5 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::apiResource('tours.reviews', TourReviewController::class)->only(['store']);
+    Route::apiResource('tours.reservations', ReservationController::class)->only(['store']);
 });

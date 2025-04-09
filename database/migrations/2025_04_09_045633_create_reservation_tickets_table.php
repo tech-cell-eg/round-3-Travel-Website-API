@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('extras', function (Blueprint $table) {
+        Schema::create('reservation_tickets', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('price');
-            $table->boolean('per_person');
+            $table->foreignId('reservation_id')->constrained()->onDelete('cascade');
+            $table->foreignId('ticket_type_id')->constrained()->onDelete('cascade');
+            $table->integer('quantity');
             $table->timestamps();
-        });
+        });        
     }
 
     /**
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('extras');
+        Schema::dropIfExists('reservation_tickets');
     }
 };

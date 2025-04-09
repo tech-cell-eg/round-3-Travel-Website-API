@@ -140,4 +140,9 @@ class Tour extends Model
             'tour_operator' => round($reviews->avg('tour_operator'), 1),
         ];
     }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
+    }
 }
