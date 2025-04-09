@@ -6,9 +6,9 @@ use App\Helpers\QueryFilter;
 
 class TourFilter extends QueryFilter
 {
-    public function tour_category_id($id)
+    public function tour_category_ids($ids)
     {
-        return $this->builder->where('tour_category_id', $id);
+        return $this->builder->whereIn('tour_category_id', $ids);
     }
 
     public function destination_id($id)

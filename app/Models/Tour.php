@@ -35,6 +35,20 @@ class Tour extends Model
             ->withPivot('is_included')
             ->withTimestamps();
     }
+    public function included_amenities()
+    {
+        return $this->belongsToMany(Amenity::class, 'tour_amenities')
+            ->wherePivot('is_included', true)
+            ->withPivot('is_included')
+            ->withTimestamps();
+    }
+    public function excluded_amenities()
+    {
+        return $this->belongsToMany(Amenity::class, 'tour_amenities')
+            ->wherePivot('is_included', false)
+            ->withPivot('is_included')
+            ->withTimestamps();
+    }
 
     public function itineraries()
     {

@@ -25,7 +25,7 @@ class TourController extends Controller
 
     public function show(Tour $tour)
     {
-        $tour = new TourResource($tour->loadCount('reviews')->load('destination', 'category', 'images', 'reviews.images', 'reviews.user', 'amenities', 'itineraries', 'ticketPrices', 'extras'));
+        $tour = new TourResource($tour->loadCount('reviews')->load('destination', 'category', 'images', 'reviews.images', 'reviews.user', 'included_amenities', 'excluded_amenities', 'itineraries', 'ticketPrices', 'extras'));
         return $this->successResponse($tour, 'Tour fetched successfully');
     }
 }
