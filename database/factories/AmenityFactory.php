@@ -29,8 +29,6 @@ class AmenityFactory extends Factory
                 'First Aid Kit',
                 'Restrooms',
             ]),
-            'created_at' => now(),
-            'updated_at' => now(),
         ];
     }
 }

@@ -18,12 +18,12 @@ class ArticleFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->sentence(5),
-            'image' => $this->faker->imageUrl(800, 600, 'travel', true),
-            'user_id' => User::all()->random()->id,
+            'title'       => $this->faker->sentence(5),
+            'image'       => $this->faker->imageUrl(800, 600, 'travel', true),
+            'user_id'     => User::inRandomOrder()->first()->id ?? User::factory()->create()->id,
             'description' => $this->faker->paragraph(3),
-            'created_at' => $this->faker->dateTimeThisYear(),
-            'updated_at' => $this->faker->dateTimeThisYear(),
+            'created_at'  => $this->faker->dateTimeThisYear(),
+            'updated_at'  => $this->faker->dateTimeThisYear(),
         ];
     }
 }

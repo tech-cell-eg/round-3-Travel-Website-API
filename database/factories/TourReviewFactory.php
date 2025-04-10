@@ -31,8 +31,6 @@ class TourReviewFactory extends Factory
             'room_rate' => $this->faker->numberBetween(0, 5), 
             'food_rate' => $this->faker->numberBetween(0, 5), 
             'tour_operator' => $this->faker->numberBetween(0, 5), 
-            'created_at' => $this->faker->dateTimeThisYear(), 
-            'updated_at' => $this->faker->dateTimeThisYear(), 
         ];
     }
 

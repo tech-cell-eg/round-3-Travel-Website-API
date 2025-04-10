@@ -12,8 +12,6 @@ class ReviewImageFactory extends Factory
         return [
             'tour_review_id' => TourReview::factory(),
             'image' => $this->faker->imageUrl(800, 600, 'travel', true),
-            'created_at' => now(),
-            'updated_at' => now(),
         ];
     }
 }

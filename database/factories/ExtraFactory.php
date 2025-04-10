@@ -29,8 +29,6 @@ class ExtraFactory extends Factory
             ]),
             'price' => $this->faker->numberBetween(10, 100), 
             'per_person' => $this->faker->randomElement([true, false]),
-            'created_at' => now(),
-            'updated_at' => now(),
         ];
     }
 }

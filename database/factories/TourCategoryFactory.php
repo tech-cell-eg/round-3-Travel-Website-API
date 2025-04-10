@@ -28,8 +28,6 @@ class TourCategoryFactory extends Factory
                 'Nature',
             ]),
             'image' => $this->faker->imageUrl(640, 480, 'travel', true), 
-            'created_at' => now(),
-            'updated_at' => now(),
         ];
     }
 }

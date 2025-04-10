@@ -29,8 +29,6 @@ class TicketTypeFactory extends Factory
             'name' => $ticketType['name'],
             'age_min' => $ticketType['age_min'],
             'age_max' => $ticketType['age_max'],
-            'created_at' => now(),
-            'updated_at' => now(),
         ];
     }
 }

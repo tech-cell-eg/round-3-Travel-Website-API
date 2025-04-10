@@ -21,8 +21,6 @@ class TestimonialFactory extends Factory
             'user_id' => User::factory(), // Links to a User
             'rate' => $this->faker->numberBetween(0, 5), // Random rating from 0 to 5 as a string
             'comment' => $this->faker->paragraph(2), // 2-sentence comment
-            'created_at' => $this->faker->dateTimeThisYear(), // Random date this year
-            'updated_at' => $this->faker->dateTimeThisYear(), // Random date this year
         ];
     }
 }

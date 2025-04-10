@@ -62,7 +62,7 @@ class DatabaseSeeder extends Seeder
         Extra::factory(10)->create();
         Faq::factory(100)->create();
         Testimonial::factory(100)->create();
-        Article::factory(50)->create();
+        Article::factory(10)->create();
         $this->call(FeatureSeeder::class);
 
     }
