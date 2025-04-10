@@ -25,10 +25,14 @@ class CreateArticle extends CreateRecord
                     ->queue(new NewArticleNotification($article));
             }
         });
+    }
 
-        Notification::make()
-            ->title('Article created and newsletter notifications queued')
+    // Override the default notification
+    protected function getCreatedNotification(): ?Notification
+    {
+        return Notification::make()
             ->success()
-            ->send();
+            ->title('Article created')
+            ->body('The article was created successfully and newsletter notifications were sent.');
     }
 }
