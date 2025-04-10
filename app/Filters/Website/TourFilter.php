@@ -6,6 +6,14 @@ use App\Helpers\QueryFilter;
 
 class TourFilter extends QueryFilter
 {
+    public function search($search)
+    {
+        return $this->builder->where(function ($query) use ($search) {
+            $query->where('title', 'LIKE', "%{$search}%")
+                ->orWhere('description', 'LIKE', "%{$search}%");
+        });
+    }
+
     public function tour_category_ids($ids)
     {
         return $this->builder->whereIn('tour_category_id', $ids);

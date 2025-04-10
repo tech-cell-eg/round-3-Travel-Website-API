@@ -22,9 +22,7 @@ class TourItineraryFactory extends Factory
             'title' => $this->faker->randomElement([
                 'Day 1: Arrival and Orientation',
             ]),
-            'description' => $this->faker->paragraph(2),
-            'created_at' => now(),
-            'updated_at' => now(),
+            'description' => $this->faker->paragraph(2)
         ];
     }
 }

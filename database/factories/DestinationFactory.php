@@ -19,8 +19,6 @@ class DestinationFactory extends Factory
         return [
             'name' => $this->faker->city(),
             'image' => $this->faker->imageUrl(640, 480, 'travel', true), 
-            'created_at' => now(),
-            'updated_at' => now(),
         ];
     }
 }

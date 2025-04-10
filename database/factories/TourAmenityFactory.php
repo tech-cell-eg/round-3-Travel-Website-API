@@ -22,8 +22,6 @@ class TourAmenityFactory extends Factory
             'tour_id' => Tour::factory(),
             'amenity_id' => Amenity::factory(),
             'is_included' => $this->faker->boolean(80), // 80% chance of being true
-            'created_at' => now(),
-            'updated_at' => now(),
         ];
     }
 }

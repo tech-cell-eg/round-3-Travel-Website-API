@@ -21,8 +21,6 @@ class ExtraTourFactory extends Factory
         return [
             'extra_id' => Extra::factory(), 
             'tour_id' => Tour::factory(), 
-            'created_at' => now(),
-            'updated_at' => now(),
         ];
     }
 }

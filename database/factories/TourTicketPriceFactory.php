@@ -22,8 +22,6 @@ class TourTicketPriceFactory extends Factory
             'tour_id' => Tour::factory(), 
             'ticket_type_id' => TicketType::factory(), 
             'price' => $this->faker->numberBetween(20, 500), 
-            'created_at' => now(),
-            'updated_at' => now(),
         ];
     }
 }

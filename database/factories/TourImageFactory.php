@@ -20,8 +20,6 @@ class TourImageFactory extends Factory
         return [
             'tour_id' => Tour::factory(),
             'image' => $this->faker->imageUrl(800, 600, 'travel', true),
-            'created_at' => now(),
-            'updated_at' => now(),
         ];
     }
 }

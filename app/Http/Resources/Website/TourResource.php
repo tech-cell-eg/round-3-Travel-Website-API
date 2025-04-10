@@ -23,6 +23,7 @@ class TourResource extends JsonResource
             'bestseller'         => $this->bestseller,
             'free_cancellation'  => $this->free_cancellation,
             'map'                => $this->map,
+            'initial_price'      => $this->initial_price,
             'rating'             => $this->averageRating(),
             'categories_rating'  => $this->categoriesRating(),
             'reviews_count'      => $this->reviews_count,

@@ -15,7 +15,7 @@ class TourController extends Controller
 
     public function index(TourFilter $filters)
     {
-        $tours = Tour::with('destination')
+        $tours = Tour::with('destination')->withCount('reviews')
             ->filter($filters)
             ->latest()
             ->paginate(5);

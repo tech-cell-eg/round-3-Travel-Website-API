@@ -28,8 +28,6 @@ class FaqFactory extends Factory
                 'Are children allowed on this tour?',
             ]),
             'answer' => $this->faker->paragraph(3), 
-            'created_at' => now(),
-            'updated_at' => now(),
         ];
     }
 }
