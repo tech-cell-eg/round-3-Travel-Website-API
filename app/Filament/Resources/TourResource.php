@@ -100,6 +100,7 @@ class TourResource extends Resource
                     ->required(),
                 Forms\Components\TextInput::make('map')
                     ->label('Map')
+                    ->url()
                     ->maxLength(255),
             ]);
     }

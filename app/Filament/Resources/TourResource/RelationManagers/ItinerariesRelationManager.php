@@ -36,6 +36,7 @@ class ItinerariesRelationManager extends RelationManager
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title')
+                    ->limit(30)
                     ->searchable(),
                     
                 Tables\Columns\TextColumn::make('description')
