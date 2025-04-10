@@ -2,24 +2,30 @@
 
 namespace App\Http\Controllers\Website;
 
+use Carbon\Carbon;
 use App\Models\Tour;
+use App\Traits\ApiResponse;
+use App\Filters\Website\TourFilter;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Website\TourResource;
-use App\Traits\ApiResponse;
 
 class TourController extends Controller
 {
     use ApiResponse;
-    
-    public function index()
+
+    public function index(TourFilter $filters)
     {
-        $tours = TourResource::collection(Tour::with('destination', 'category')->latest()->paginate(5));
-        return $this->successResponse($tours, 'Tours fetched successfully');
+        $tours = Tour::with('destination')
+            ->filter($filters)
+            ->latest()
+            ->paginate(5);
+
+        return $this->successResponse(TourResource::collection($tours), 'Tours fetched successfully');
     }
 
     public function show(Tour $tour)
     {
-        $tour = new TourResource($tour->load('destination', 'category'));
+        $tour = new TourResource($tour->loadCount('reviews')->load('destination', 'category', 'images', 'reviews.images', 'reviews.user', 'included_amenities', 'excluded_amenities', 'itineraries', 'ticketPrices', 'extras'));
         return $this->successResponse($tour, 'Tour fetched successfully');
     }
 }

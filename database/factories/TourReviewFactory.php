@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Tour;
+use App\Models\User;
 use App\Models\TourReview;
 use App\Models\ReviewImage;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -21,8 +22,7 @@ class TourReviewFactory extends Factory
     {
         return [
             'tour_id' => Tour::factory(), 
-            'name' => $this->faker->name(), 
-            'email' => $this->faker->unique()->safeEmail(), 
+            'user_id' => User::all()->random()->id, 
             'title' => $this->faker->sentence(4), 
             'comment' => $this->faker->paragraph(2), 
             'location_rate' => $this->faker->numberBetween(0, 5), 

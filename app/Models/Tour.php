@@ -2,14 +2,15 @@
 
 namespace App\Models;
 
+use App\Traits\FilterTrait;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Tour extends Model
 {
-    use HasFactory, Sluggable;
-    
+    use HasFactory, Sluggable, FilterTrait;
+
     protected $casts = [
         'highlights' => 'array',
     ];
@@ -31,7 +32,22 @@ class Tour extends Model
     public function amenities()
     {
         return $this->belongsToMany(Amenity::class, 'tour_amenities')
-            ->withPivot('is_included');
+            ->withPivot('is_included')
+            ->withTimestamps();
+    }
+    public function included_amenities()
+    {
+        return $this->belongsToMany(Amenity::class, 'tour_amenities')
+            ->wherePivot('is_included', true)
+            ->withPivot('is_included')
+            ->withTimestamps();
+    }
+    public function excluded_amenities()
+    {
+        return $this->belongsToMany(Amenity::class, 'tour_amenities')
+            ->wherePivot('is_included', false)
+            ->withPivot('is_included')
+            ->withTimestamps();
     }
 
     public function itineraries()
@@ -46,12 +62,12 @@ class Tour extends Model
 
     public function ticketPrices()
     {
-        return $this->hasMany(TourTicketPrice::class);
+        return $this->hasMany(TourTicketPrice::class)->with('ticketType');
     }
 
     public function extras()
     {
-        return $this->belongsToMany(Extra::class, 'extra_tour');
+        return $this->belongsToMany(Extra::class, 'extra_tours', 'tour_id', 'extra_id');
     }
 
     public function getBestsellerAttribute($value)
@@ -69,7 +85,7 @@ class Tour extends Model
         return [
             'slug' => [
                 'source' => 'title',
-                'onUpdate' => true,  
+                'onUpdate' => true,
             ]
         ];
     }
@@ -78,11 +94,70 @@ class Tour extends Model
     {
         return str_starts_with($this->attributes['image'], 'http')
             ? $this->attributes['image']
-            : asset($this->attributes['image']);
+            : asset('storage/' . $this->attributes['image']);
     }
 
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    /**
+     * Calculate the overall average rating for the tour
+     */
+    public function averageRating()
+    {
+        $reviews = $this->reviews;
+
+        if ($reviews->isEmpty()) {
+            return 0;
+        }
+
+        $avg = $reviews->avg(function ($review) {
+            $sum = $review->location_rate +
+                $review->amenities_rate +
+                $review->price_rate +
+                $review->room_rate +
+                $review->food_rate +
+                $review->tour_operator;
+
+            return $sum / 6;
+        });
+
+        return round($avg, 1);
+    }
+
+    /**
+     * Get ratings by category
+     */
+    public function categoriesRating()
+    {
+        $reviews = $this->reviews;
+
+        if ($reviews->isEmpty()) {
+            return [
+                'location' => 0,
+                'amenities' => 0,
+                'price' => 0,
+                'room' => 0,
+                'food' => 0,
+                'tour_operator' => 0,
+                'overall' => 0
+            ];
+        }
+
+        return [
+            'location' => round($reviews->avg('location_rate'), 1),
+            'amenities' => round($reviews->avg('amenities_rate'), 1),
+            'price' => round($reviews->avg('price_rate'), 1),
+            'room' => round($reviews->avg('room_rate'), 1),
+            'food' => round($reviews->avg('food_rate'), 1),
+            'tour_operator' => round($reviews->avg('tour_operator'), 1),
+        ];
+    }
+
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class);
     }
 }

@@ -28,7 +28,7 @@ class Article extends Model
     {
         return str_starts_with($this->attributes['image'], 'http')
             ? $this->attributes['image']
-            : asset($this->attributes['image']);
+            : asset('storage/' . $this->attributes['image']);
     }
 
     
@@ -37,4 +37,13 @@ class Article extends Model
         return 'slug';
     }
 
+    
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($article) {
+            $article->user_id = auth()->id();
+        });
+    }
 }

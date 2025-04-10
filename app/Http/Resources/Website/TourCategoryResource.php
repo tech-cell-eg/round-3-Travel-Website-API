@@ -15,7 +15,7 @@ class TourCategoryResource extends JsonResource
             'slug'  => $this->slug,
             'image' => $this->image,
             'tours_count' => $this->tours_count,
-            'tours' => TourResource::collection($this->whenLoaded('tours')),
+            'tours' => TourResource::collection($this->whenLoaded('tours'))
         ];
     }
 }

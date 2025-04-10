@@ -13,6 +13,6 @@ class TourImage extends Model
     {
         return str_starts_with($this->attributes['image'], 'http')
             ? $this->attributes['image']
-            : asset($this->attributes['image']);
+            : asset('storage/' . $this->attributes['image']);
     }
 }

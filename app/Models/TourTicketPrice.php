@@ -16,6 +16,6 @@ class TourTicketPrice extends Model
 
     public function ticketType()
     {
-        return $this->belongsTo(TicketType::class);
+        return $this->belongsTo(TicketType::class, 'ticket_type_id', 'id');
     }
 }

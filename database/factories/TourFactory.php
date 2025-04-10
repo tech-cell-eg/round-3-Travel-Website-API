@@ -28,6 +28,7 @@ class TourFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(3), 
+            'image' => $this->faker->imageUrl(800, 600, 'travel', true),
             'type' => $this->faker->randomElement(['trending', 'popular']),
             'initial_price' => $this->faker->numberBetween(100, 1000),
             'tour_category_id' => TourCategory::all()->random()->id, 

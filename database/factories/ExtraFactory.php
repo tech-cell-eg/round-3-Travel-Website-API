@@ -28,6 +28,7 @@ class ExtraFactory extends Factory
                 'Souvenir Kit',
             ]),
             'price' => $this->faker->numberBetween(10, 100), 
+            'per_person' => $this->faker->randomElement([true, false]),
             'created_at' => now(),
             'updated_at' => now(),
         ];
