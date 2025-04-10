@@ -6,18 +6,18 @@ use Filament\Forms;
 use Filament\Tables;
 use App\Models\Article;
 use Filament\Forms\Form;
+use App\Models\Newsletter;
 use App\Traits\ModelCount;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
-use Illuminate\Database\Eloquent\Builder;
+use App\Mail\NewArticleNotification;
+use Illuminate\Support\Facades\Mail;
 use App\Filament\Resources\ArticleResource\Pages;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\ArticleResource\RelationManagers;
 
 class ArticleResource extends Resource
 {
     use ModelCount;
-    
+
     protected static ?string $model = Article::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-newspaper';

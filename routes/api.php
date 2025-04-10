@@ -7,6 +7,7 @@ use App\Http\Controllers\Website\TourController;
 use App\Http\Middleware\EnsureUserCanReviewTour;
 use App\Http\Controllers\Website\ArticleController;
 use App\Http\Controllers\Website\FeatureController;
+use App\Http\Controllers\Website\NewsletterController;
 use App\Http\Controllers\Website\TourReviewController;
 use App\Http\Controllers\Website\DestinationController;
 use App\Http\Controllers\Website\ReservationController;
@@ -22,6 +23,7 @@ Route::middleware(['throttle:api'])->group(function () {
     Route::apiResource('destinations', DestinationController::class)->only(['index', 'show']);
     Route::apiResource('features', FeatureController::class)->only(['index']);
     Route::apiResource('faqs', FaqController::class)->only(['index']);
+    Route::apiResource('newsletters', NewsletterController::class)->only(['store']);
 });
 
 
