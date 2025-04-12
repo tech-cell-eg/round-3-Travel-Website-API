@@ -14,8 +14,7 @@ class DestinationController extends Controller
     
     public function index()
     {
-        $destinations = DestinationResource::collection(Destination::withCount('tours')->latest()->paginate(8));
-        return $this->successResponse($destinations, 'Destinations fetched successfully');
+        return DestinationResource::collection(Destination::withCount('tours')->latest()->paginate(8));
     }
 
     public function show(Destination $destination)
