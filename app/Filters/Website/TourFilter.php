@@ -26,7 +26,7 @@ class TourFilter extends QueryFilter
 
     public function languages($language)
     {
-        return $this->builder->whereLike('languages', $language);
+        return $this->builder->whereLike('languages',  "%{$language}%");
     }
 
     public function popular()
