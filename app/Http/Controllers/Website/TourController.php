@@ -15,12 +15,11 @@ class TourController extends Controller
 
     public function index(TourFilter $filters)
     {
-        $tours = Tour::with('destination')->withCount('reviews')
+        return  TourResource::collection(Tour::with('destination')->withCount('reviews')
             ->filter($filters)
             ->latest()
-            ->paginate(5);
-
-        return $this->successResponse(TourResource::collection($tours), 'Tours fetched successfully');
+            ->paginate(5)
+        );
     }
 
     public function show(Tour $tour)

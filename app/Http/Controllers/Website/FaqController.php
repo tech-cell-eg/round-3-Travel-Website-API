@@ -14,7 +14,6 @@ class FaqController extends Controller
     
     public function index()
     {
-        $faqs = FaqResource::collection(Faq::latest()->take(5)->get());
-        return $this->successResponse($faqs, 'FAQs fetched successfully');
+        return FaqResource::collection(Faq::latest()->take(5)->get());
     }
 }

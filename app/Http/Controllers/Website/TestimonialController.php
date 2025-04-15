@@ -13,7 +13,6 @@ class TestimonialController extends Controller
     
     public function index()
     {
-        $testimonials = TestimonialResource::collection(Testimonial::with('user')->latest()->paginate(5));
-        return $this->successResponse($testimonials, 'Testimonials fetched successfully');
+        return TestimonialResource::collection(Testimonial::with('user')->latest()->paginate(5));
     }
 }
