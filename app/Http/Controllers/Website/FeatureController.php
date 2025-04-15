@@ -13,7 +13,6 @@ class FeatureController extends Controller
 
     public function index()
     {
-        $features = FeatureResource::collection(Feature::latest()->take(4)->get());
-        return $this->successResponse($features, 'Features fetched successfully');
+        return FeatureResource::collection(Feature::latest()->take(4)->get());
     }
 }

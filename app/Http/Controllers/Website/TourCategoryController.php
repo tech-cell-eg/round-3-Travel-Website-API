@@ -14,8 +14,7 @@ class TourCategoryController extends Controller
     
     public function index()
     {
-        $tourCategories = TourCategoryResource::collection(TourCategory::latest()->take(6)->get());
-        return $this->successResponse($tourCategories, 'Tour categories fetched successfully');
+        return TourCategoryResource::collection(TourCategory::latest()->take(6)->get());
     }
 
     public function show(TourCategory $tourCategory)

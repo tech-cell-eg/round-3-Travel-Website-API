@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
     {
         // Disable foreign key constraints
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-
+    
         // Truncate all tables
         User::truncate();
         Destination::truncate();
@@ -40,20 +40,19 @@ class DatabaseSeeder extends Seeder
         Testimonial::truncate();
         Article::truncate(); 
         Feature::truncate();
-
-        // Truncate related tables created by TourFactory
+    
         DB::table('tour_images')->truncate();
         DB::table('tour_itineraries')->truncate();
         DB::table('tour_reviews')->truncate();
         DB::table('tour_amenities')->truncate();
         DB::table('tour_ticket_prices')->truncate();
         DB::table('extra_tours')->truncate();
-
+    
         // Re-enable foreign key constraints
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-
+    
         // Seed the tables
-        User::factory(10)->create();
+        $users = User::factory(10)->create(); // Store the created users
         Destination::factory(10)->create();
         TourCategory::factory(5)->create();
         $this->call(TicketTypeSeeder::class); 
@@ -62,8 +61,7 @@ class DatabaseSeeder extends Seeder
         Extra::factory(10)->create();
         Faq::factory(100)->create();
         Testimonial::factory(100)->create();
-        Article::factory(10)->create();
+        // Article::factory(10)->create(['user_id' => fn () => $users->random()->id]); 
         $this->call(FeatureSeeder::class);
-
     }
 }
